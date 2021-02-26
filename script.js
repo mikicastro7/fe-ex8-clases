@@ -4,7 +4,6 @@ class Personajes {
   edad;
   estado = "vivo";
   serie = "Juego de Tronos";
-  cargo;
 
   constructor(nombreP, familiaP, edadP){
     this.nombre = nombreP;
@@ -27,7 +26,6 @@ class Rey extends Personajes{
   constructor(anyosReinadoP, nombreP, familiaP, edadP){
     super()
     this.anyosReinado = anyosReinadoP;
-    this.cargo = "Rey";
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
@@ -43,7 +41,6 @@ class Luchador extends Personajes{
   constructor(armaP, nombreP, familiaP, edadP, destrezaP){
     super()
     this.arma = armaP;
-    this.cargo = "Luchador";
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
@@ -75,8 +72,7 @@ class Asesor extends Personajes{
 
   constructor(personajeAsesoraP, nombreP, familiaP, edadP){
     super()
-    this.personajeAsesora = personajeAsesoraP.cargo;
-    this.cargo = "Asesor";
+    this.personajeAsesora = personajeAsesoraP;
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
@@ -92,9 +88,8 @@ class Escudero extends Personajes{
 
   constructor(personajeSirveP, gradoPelotismoP, nombreP, familiaP, edadP){
     super()
-    this.personajeSirve = personajeSirveP.cargo;
+    this.personajeSirve = personajeSirveP;
     this.gradoPelotismo = this.controlarPelotismo(gradoPelotismoP);
-    this.cargo = "Escudero";
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
