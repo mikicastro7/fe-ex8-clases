@@ -16,7 +16,7 @@ class Personajes {
     return "Comunicando";
   }
   morir() {
-    this.estado = "muerto"
+    this.estado = "muerto";
   }
 
 }
@@ -27,8 +27,8 @@ class Rey extends Personajes{
   constructor(anyosReinadoP, nombreP, familiaP, edadP){
     super()
     this.anyosReinado = anyosReinadoP;
-    this.cargo = "Rey"
-    this.nombre = nombreP
+    this.cargo = "Rey";
+    this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
   }
@@ -43,20 +43,26 @@ class Luchador extends Personajes{
   constructor(armaP, nombreP, familiaP, edadP, destrezaP){
     super()
     this.arma = armaP;
-    this.cargo = "Luchador"
-    this.nombre = nombreP
+    this.cargo = "Luchador";
+    this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
-    this.destreza = destrezaP;
+    this.destreza = this.controlarDestreza(destrezaP);
   }
   set destreza(destreza){
+    this.destreza = this.controlarDestreza(destreza)
+  }
+
+  controlarDestreza(destreza) {
+    let resDestreza = 0;
     if(destreza > 10){
-      this.destreza = 10;
+      resDestreza = 10;
     } else if (destreza < 0) {
-      this.destreza = 0
+      resDestreza = 0
     } else {
-      this.destreza = destreza;
+      resDestreza = destreza;
     }
+    return destreza;
   }
 
   comunicar(){
@@ -70,13 +76,13 @@ class Asesor extends Personajes{
   constructor(personajeAsesoraP, nombreP, familiaP, edadP){
     super()
     this.personajeAsesora = personajeAsesoraP.cargo;
-    this.cargo = "Asesor"
-    this.nombre = nombreP
+    this.cargo = "Asesor";
+    this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
   }
   comunicar(){
-    return "No sé por qué, pero creo que voy a morir pronto"
+    return "No sé por qué, pero creo que voy a morir pronto";
   }
 }
 
@@ -87,7 +93,7 @@ class Escudero extends Personajes{
   constructor(personajeSirveP, gradoPelotismoP, nombreP, familiaP, edadP){
     super()
     this.personajeSirve = personajeSirveP.cargo;
-    this.gradoPelotismo = gradoPelotismoP;
+    this.gradoPelotismo = this.controlarPelotismo(gradoPelotismoP);
     this.cargo = "Escudero";
     this.nombre = nombreP;
     this.edad = edadP;
@@ -95,23 +101,29 @@ class Escudero extends Personajes{
   }
 
   comunicar(){
-    return "Soy un loser"
+    return "Soy un loser";
   }
 
   set gradoPelotismo(pelotsimo){
-    if(pelotsimo > 10){
-      this.gradoPelotismo = 10;
-    } else if (pelotsimo < 0) {
-      this.gradoPelotismo = 0
+   this.gradoPelotismo = this.controlarPelotismo(pelotsimo);
+  }
+
+  controlarPelotismo(pelotismo) {
+    let resPelotsimo = 0;
+     if(pelotismo > 10){
+      resPelotsimo = 10;
+    } else if (pelotismo < 0) {
+      resPelotsimo = 0;
     } else {
-      this.gradoPelotismo = pelotsimo;
+      resPelotsimo = pelotismo;
     }
+    return resPelotsimo;
   }
 
 }
 
 let jofrey = new Rey(3, "Joffrey Baratheon", "Baratheon", 20);
 let jamie = new Luchador("Bazoca", "Joffrey Baratheon", "Lanister", 20, 5);
-let bronn = new Escudero(jamie, 9, "bronn", "sin familia", 60);
+let bronn = new Escudero(jamie, 12, "bronn", "sin familia", 60);
 let daenerys  = new Luchador("dragones", "Daenerys Targaryen", "Targaryen", 21, 10);
-let tyrion = new Asesor(daenerys, "Tyrion Lannister", "Lannister", 36)
+let tyrion = new Asesor(daenerys, "Tyrion Lannister", "Lannister", 36);
