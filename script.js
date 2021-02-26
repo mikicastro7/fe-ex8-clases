@@ -37,17 +37,17 @@ class Rey extends Personajes{
 
 class Luchador extends Personajes{
   arma;
-  destreza;
+  #destreza;
   constructor(armaP, nombreP, familiaP, edadP, destrezaP){
     super()
     this.arma = armaP;
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
-    this.destreza = this.controlarDestreza(destrezaP);
+    this.#destreza = this.controlarDestreza(destrezaP);
   }
   set destreza(destreza){
-    this.destreza = this.controlarDestreza(destreza)
+    this.#destreza = this.controlarDestreza(destreza)
   }
 
   controlarDestreza(destreza) {
@@ -59,7 +59,7 @@ class Luchador extends Personajes{
     } else {
       resDestreza = destreza;
     }
-    return destreza;
+    return resDestreza;
   }
 
   comunicar(){
@@ -84,12 +84,12 @@ class Asesor extends Personajes{
 
 class Escudero extends Personajes{
   personajeSirve;
-  gradoPelotismo;
+  #gradoPelotismo;
 
   constructor(personajeSirveP, gradoPelotismoP, nombreP, familiaP, edadP){
     super()
     this.personajeSirve = personajeSirveP;
-    this.gradoPelotismo = this.controlarPelotismo(gradoPelotismoP);
+    this.#gradoPelotismo = this.controlarPelotismo(gradoPelotismoP);
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
@@ -100,7 +100,7 @@ class Escudero extends Personajes{
   }
 
   set gradoPelotismo(pelotsimo){
-   this.gradoPelotismo = this.controlarPelotismo(pelotsimo);
+   this.#gradoPelotismo = this.controlarPelotismo(pelotsimo);
   }
 
   controlarPelotismo(pelotismo) {
