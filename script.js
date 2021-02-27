@@ -4,7 +4,6 @@ class Personajes {
   edad;
   estado = "vivo";
   serie = "Juego de Tronos";
-  cargo;
 
   constructor(nombreP, familiaP, edadP) {
     this.nombre = nombreP;
@@ -16,7 +15,7 @@ class Personajes {
     return "Comunicando";
   }
   morir() {
-    this.estado = "muerto"
+    this.estado = "muerto";
   }
 
 }
@@ -27,8 +26,7 @@ class Rey extends Personajes {
   constructor(anyosReinadoP, nombreP, familiaP, edadP) {
     super()
     this.anyosReinado = anyosReinadoP;
-    this.cargo = "Rey"
-    this.nombre = nombreP
+    this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
   }
@@ -39,24 +37,31 @@ class Rey extends Personajes {
 
 class Luchador extends Personajes {
   arma;
-  destreza;
-  constructor(armaP, nombreP, familiaP, edadP, destrezaP) {
+
+  #destreza;
+  constructor(armaP, nombreP, familiaP, edadP, destrezaP){
     super()
     this.arma = armaP;
-    this.cargo = "Luchador"
-    this.nombre = nombreP
+    this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
-    this.destreza = destrezaP;
+    this.#destreza = this.controlarDestreza(destrezaP);
   }
-  set destreza(destreza) {
-    if (destreza > 10) {
-      this.destreza = 10;
+
+  set destreza(destreza){
+    this.#destreza = this.controlarDestreza(destreza)
+  }
+
+  controlarDestreza(destreza) {
+    let resDestreza = 0;
+    if(destreza > 10){
+      resDestreza = 10;
     } else if (destreza < 0) {
-      this.destreza = 0
+      resDestreza = 0
     } else {
-      this.destreza = destreza;
+      resDestreza = destreza;
     }
+    return resDestreza;
   }
 
   comunicar() {
@@ -69,43 +74,50 @@ class Asesor extends Personajes {
 
   constructor(personajeAsesoraP, nombreP, familiaP, edadP) {
     super()
-    this.personajeAsesora = personajeAsesoraP.cargo;
-    this.cargo = "Asesor"
-    this.nombre = nombreP
-    this.edad = edadP;
-    this.familia = familiaP;
-  }
-  comunicar() {
-    return "No sé por qué, pero creo que voy a morir pronto"
-  }
-}
-
-class Escudero extends Personajes {
-  personajeSirve;
-  gradoPelotismo;
-
-  constructor(personajeSirveP, gradoPelotismoP, nombreP, familiaP, edadP) {
-    super()
-    this.personajeSirve = personajeSirveP.cargo;
-    this.gradoPelotismo = gradoPelotismoP;
-    this.cargo = "Escudero";
+    this.personajeAsesora = personajeAsesoraP;
     this.nombre = nombreP;
     this.edad = edadP;
     this.familia = familiaP;
   }
 
-  comunicar() {
-    return "Soy un loser"
+  comunicar(){
+    return "No sé por qué, pero creo que voy a morir pronto";
+
+  }
+}
+
+class Escudero extends Personajes {
+  personajeSirve;
+  #gradoPelotismo;
+
+  constructor(personajeSirveP, gradoPelotismoP, nombreP, familiaP, edadP) {
+    super()
+    this.personajeSirve = personajeSirveP;
+    this.#gradoPelotismo = this.controlarPelotismo(gradoPelotismoP);
+    this.nombre = nombreP;
+    this.edad = edadP;
+    this.familia = familiaP;
   }
 
-  set gradoPelotismo(pelotsimo) {
-    if (pelotsimo > 10) {
-      this.gradoPelotismo = 10;
-    } else if (pelotsimo < 0) {
-      this.gradoPelotismo = 0
+
+  comunicar(){
+    return "Soy un loser";
+  }
+
+  set gradoPelotismo(pelotsimo){
+   this.#gradoPelotismo = this.controlarPelotismo(pelotsimo);
+  }
+
+  controlarPelotismo(pelotismo) {
+    let resPelotsimo = 0;
+     if(pelotismo > 10){
+      resPelotsimo = 10;
+    } else if (pelotismo < 0) {
+      resPelotsimo = 0;
     } else {
-      this.gradoPelotismo = pelotsimo;
+      resPelotsimo = pelotismo;
     }
+    return resPelotsimo;
   }
 
 }
