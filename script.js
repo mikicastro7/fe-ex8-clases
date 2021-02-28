@@ -52,6 +52,10 @@ class Luchador extends Personajes {
     this.#destreza = this.controlarDestreza(destreza)
   }
 
+  get destreza(){
+    return this.#destreza;
+  }
+
   controlarDestreza(destreza) {
     let resDestreza = 0;
     if(destreza > 10){
@@ -106,6 +110,10 @@ class Escudero extends Personajes {
 
   set gradoPelotismo(pelotsimo){
    this.#gradoPelotismo = this.controlarPelotismo(pelotsimo);
+  }
+
+  get gradoPelotismo(){
+    return this.#gradoPelotismo;
   }
 
   controlarPelotismo(pelotismo) {
